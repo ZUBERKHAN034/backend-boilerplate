@@ -20,7 +20,7 @@ const constants = {
       COUNTRY: 'country',
       STATE: 'state',
       CITY: 'city',
-      LASTACTIVITY: 'lastActivity',
+      LAST_ACTIVITY: 'lastActivity',
       PLAN: 'plan',
       TYPE: 'type',
     },
@@ -106,9 +106,9 @@ const constants = {
     ERR_412: 412,
   },
   ERROR_MESSAGES: {
-    NOT_AUTHORISED: 'You are not authorized',
+    NOT_AUTHORIZED: 'You are not authorized',
     USER_NOT_FOUND: 'User not found.',
-    USER_ALREAD_EXISTS: 'User already exists',
+    USER_ALREADY_EXISTS: 'User already exists',
     INVALID_PASSWORD: 'Invalid Password',
     RECORD_NOT_FOUND: 'Record not found.',
     PASSWORD_NOT_MATCHED: 'Password not matched',
@@ -122,7 +122,7 @@ const constants = {
     LIMIT_REACHED: 'Limit reached',
     HASH_EXPIRED: 'Hash expired',
     HASH_NOT_FOUND: 'Hash not found',
-    ADDRS_NOT_FOUND: 'User billing address not found.',
+    ADDRESS_NOT_FOUND: 'User billing address not found.',
     SESSIONS_NOT_FOUND: 'Stripe session_id not found.',
     PLAN_NOT_FOUND: 'Plan not found.',
     FORGOT_PASSWORD_REQUEST: `The account currently has no password set. We recommend requesting a 'Forgot Password'.`,
@@ -137,24 +137,12 @@ const constants = {
     EMAIL_UPDATED: 'Email updated successfully',
   },
   INS_EXCLUDE_COLS: ['created_at', 'updated_at', 'deleted_at'],
-  DB_STATES: [
-    {
-      value: 0,
-      label: 'disconnected',
-    },
-    {
-      value: 1,
-      label: 'connected',
-    },
-    {
-      value: 2,
-      label: 'connecting',
-    },
-    {
-      value: 3,
-      label: 'disconnecting',
-    },
-  ],
+  DB_STATES: {
+    0: 'DISCONNECTED',
+    1: 'CONNECTED',
+    2: 'CONNECTING',
+    3: 'DISCONNECTING',
+  },
   AWS: {
     BUCKET_PRIVATE: `${process.env.S3_BUCKET_PRIVATE}`,
     BUCKET_PUBLIC: `${process.env.S3_BUCKET_PUBLIC}`,
@@ -170,8 +158,8 @@ const constants = {
     PRO: 'pro',
     ADVANCE: 'advance',
   },
-  SENDGRID: {
-    SENDER_NAME: 'OpenStroke',
+  SEND_GRID: {
+    SENDER_NAME: 'backend-boilerplate',
     SENDER_EMAIL: `no-reply@${process.env.SEND_GRID_DOMAIN}`,
   },
 };

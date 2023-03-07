@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose, { Mongoose } from 'mongoose';
 import constants from '../common/constants';
 
 interface DBConfig {
@@ -7,19 +7,21 @@ interface DBConfig {
   debug: boolean;
 }
 
-export class DBManaager {
-  public static connection: Promise<any>;
+export class DBManager {
+  public static connection: Mongoose;
+
   public static async connect(config: DBConfig) {
     if (mongoose.connection.readyState == 0) {
       mongoose.set('debug', config.debug);
-      const url: string = `${config.url}`;
-      const dbName = config.db;
-      this.connection = mongoose.connect(`${url}${dbName}`);
+      const { url, db: dbName } = config;
+      this.connection = await mongoose.connect(`${url}${dbName}`);
 
       const state = Number(mongoose.connection.readyState);
       // eslint-disable-next-line no-console
-      console.log('DB Connection : ' + constants.DB_STATES.find((f) => f.value == state).label);
-    } else return this.connection;
+      console.log(`Database status -> ${constants.DB_STATES[state]}`);
+    } else {
+      return this.connection;
+    }
   }
 
   public static debug(debug: any) {

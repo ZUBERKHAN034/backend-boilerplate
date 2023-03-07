@@ -11,7 +11,7 @@ import compression from 'compression';
 import cors from 'cors';
 import router from './routes';
 import { expressjwt } from 'express-jwt';
-import { DBManaager } from './db/db_manager';
+import { DBManager } from './db/db_manager';
 
 export class ApiServer {
   public app: express.Application;
@@ -32,7 +32,7 @@ export class ApiServer {
     this.routes();
 
     // DB connection
-    DBManaager.connect({
+    DBManager.connect({
       db: process.env.DB,
       url: process.env.DB_URL,
       debug: process.env.DB_DEBUG == 'true' ? true : false,
